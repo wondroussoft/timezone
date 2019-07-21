@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+		<tr style="font-size: 13">
+			<th>ID</th>
+				<th>time</th>
+			
+</tr>			
+	<tr>
+			<td th:text="${timezone.id}" /></td>
+			
+			<td th:if="${language == 1}"><a
+				th:href="@{'/timezone/country/'+ ${timezone.id}}"
+				th:text="${timezone.nameEng}"> </a></td>
+			
+			
+			<p th:text="@{${timezone.time}+ ' HH:mm'}"></p>
+			
+		</tr>
+
+</body>
+</html>

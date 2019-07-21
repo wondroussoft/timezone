@@ -1,27 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<table border="1">
-        <tr style="font-size: 13">
-            <th>ID</th>
-            <th th:if="${language == 1}"> English Name</th>
-            <th th:if="${language == 2}"> Telugu Name</th>
-            <th th:if="${language == 3}"> Kannada Name</th>
-            <th th:if="${language == 4}"> Hindi Name</th>
-            <th th:if="${language == 5}"> Tamil Name</th>
-        </tr>
-        <tr th:each="country:  ${countries}">
-            <td th:text="${country.id}" /></td>       
-            <td th:if="${language == 1}"><a th:href="@{'/timezone/country'+ '${country.id}'}" th:text="${country.nameEng}"> </a></td>           
-            <td th:if="${language == 2}"><a th:href="@{'/timezone/country'+ '${country.id}'}" th:text="${country.nameTelugu}"> </a></td>
-            <td th:if="${language == 3}"><a th:href="@{'/timezone/country'+ '${country.id}'}" th:text="${country.nameKannnada}"> </a></td>
-            <td th:if="${language == 4}"><a th:href="@{'/timezone/country'+ '${country.id}'}" th:text="${country.nameHindi}"> </a></td> 
-            <td th:if="${language == 5}"><a th:href="@{'/timezone/country'+ '${country.id}'}" th:text="${country.nameTamil}"> </a></td>    
-        </tr>
-    </table>
+	<table border="1">
+		<tr style="font-size: 13">
+			<th>ID</th>
+			<th th:if="${language == 1}">Name</th>
+			<th th:if="${language == 2}">పేరు</th>
+			<th th:if="${language == 3}">ಹೆಸರು</th>
+			<th th:if="${language == 4}">नाम</th>
+			<th th:if="${language == 5}">பெயர்</th>
+		</tr>
+		<tr th:each="country:  ${countries}">
+			<td th:text="${country.id}" /></td>
+			<td th:if="${language == 1}"><a
+				th:href="@{'/countries/'+ ${country.id} + '?lang=' + ${language}}"
+				th:text="${country.nameEng}"> </a></td>
+			<td th:if="${language == 2}"><a
+				th:href="@{'/countries/'+ ${country.id} + '?lang=' + ${language}}"
+				th:text="${country.nameTelugu}"> </a></td>
+			<td th:if="${language == 3}"><a
+				th:href="@{'/countries/'+ ${country.id} + '?lang=' + ${language}}"
+				th:text="${country.nameKannnada}"> </a></td>
+			<td th:if="${language == 4}"><a
+				th:href="@{'/countries/'+ ${country.id} + '?lang=' + ${language}}"
+				th:text="${country.nameHindi}"> </a></td>
+			<td th:if="${language == 5}"><a
+				th:href="@{'/countries/'+ ${country.id} + '?lang=' + ${language}}"
+				th:text="${country.nameTamil}"> </a></td>
+		</tr>
+	</table>
 </body>
 </html>
