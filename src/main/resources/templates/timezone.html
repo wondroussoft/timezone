@@ -4,26 +4,34 @@
 	xmlns:sec="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Time Zone</title>
 </head>
 <body>
-<table border="1">
+	<h2 th:text="'Time Zone Details for ' + ${countryName}"></h2>
+
+	<table border="1">
 		<tr style="font-size: 13">
 			<th>ID</th>
-				<th>time</th>
-			
-</tr>			
-	<tr>
-			<td th:text="${timezone.id}" /></td>
-			
-			<td th:if="${language == 1}"><a
-				th:href="@{'/timezone/country/'+ ${timezone.id}}"
-				th:text="${timezone.nameEng}"> </a></td>
-			
-			
-			<p th:text="@{${timezone.time}+ ' HH:mm'}"></p>
-			
+			<th>Zone Name</th>
+			<th>Abbreviation</th>
+			<th>GMzT Offset</th>
+			<th>Daylight Saving Time</th>
+			<th>Current Time</th>
 		</tr>
+		<tr>
+			<td th:text="${timezone.id}"></td>
+			<td th:if="${language == 1}" th:text="${timezone.zoneName}"></td>
+			<td th:if="${language == 2}" th:text="${timezone.zoneName}"></td>
+			<td th:if="${language == 3}" th:text="${timezone.zoneName}"></td>
+			<td th:if="${language == 4}" th:text="${timezone.zoneName}"></td>
+			<td th:if="${language == 5}" th:text="${timezone.zoneName}"></td>
+			<td th:text="${timezone.abbreviation}"></td>
+			<td th:text="@{'UTC/GMT ' + ${timezone.gmtOffset} + ' hours'}"></td>
+			<td th:if="${timezone.daylightSavingTime == true}" th:text="Yes"></td>
+			<td th:if="${timezone.daylightSavingTime == false}" th:text="No"></td>
+			<td th:text="${timezone.currentTime}"></td>
+		</tr>
+	</table>
 
 </body>
 </html>
