@@ -146,6 +146,9 @@ public class TimezoneController {
 	@GetMapping("/countries/{countryId}")
 	public String getCountryById(Model model, @PathVariable(name = "countryId") Long countryId,
 			@RequestParam(name = "lang") Long lang) {
+		
+		// Go to DB get the Country based Country
+		// SELECT * FROM country WHERE id = {countryId}
 		Country c = null;
 		if (countryId.equals(1L)) {
 			c = new Country("Xi Jinping", 4343, 375835, "Central", "7:40", "20/07/2019");
@@ -300,11 +303,14 @@ public class TimezoneController {
 				c.setNameTamil("பிரேசில்");
 			}
 		}
-
-		Timezone timezone = new Timezone(1L, "Asia/Kolkata", "IST", 5.30, false, "Sunday, 21 July 2019, 16:05:24 IST");
-
+		
+		Timezone timezone=null;
 		String countryName = null;
-
+		
+		if(countryId.equals(1l)) {
+		timezone = new Timezone(1L, "Hong Kong", "HKT",7.22, false, "Wednesday, 24 July 2019, 16:05:24 HKT");
+		
+		
 		if (lang.equals(1L)) {
 			countryName = c.getNameEng();
 		} else if (lang.equals(2L)) {
@@ -316,11 +322,75 @@ public class TimezoneController {
 		} else if (lang.equals(5l)) {
 			countryName = c.getNameTamil();
 		}
-
+		}else if(countryId.equals(2l)) {
+			timezone = new Timezone(2L, "America", "USA", 7.25, false, "Wedensday, 24 July 2019, 16:05:24 USA");
+			
+			
+			if (lang.equals(1L)) {
+				countryName = c.getNameEng();
+			} else if (lang.equals(2L)) {
+				countryName = c.getNameTelugu();
+			} else if (lang.equals(3l)) {
+				countryName = c.getNameKannnada();
+			} else if (lang.equals(4l)) {
+				countryName = c.getNameHindi();
+			} else if (lang.equals(5l)) {
+				countryName = c.getNameTamil();
+			}
+		}else if(countryId.equals(3l)) {
+			timezone = new Timezone(3L, "INDIA", "IND", 4.57, false, "Wedensday, 24 July 2019, 16:05:24 IND");
+			
+			
+			if (lang.equals(1L)) {
+				countryName = c.getNameEng();
+			} else if (lang.equals(2L)) {
+				countryName = c.getNameTelugu();
+			} else if (lang.equals(3l)) {
+				countryName = c.getNameKannnada();
+			} else if (lang.equals(4l)) {
+				countryName = c.getNameHindi();
+			} else if (lang.equals(5l)) {
+				countryName = c.getNameTamil();
+			}
+		}else if(countryId.equals(4l)) {
+			timezone = new Timezone(4L, "Canada", "CAN", 7.28, false, "Wedensday, 24 July 2019, 16:05:24 CAN");
+			
+			
+			if (lang.equals(1L)) {
+				countryName = c.getNameEng();
+			} else if (lang.equals(2L)) {
+				countryName = c.getNameTelugu();
+			} else if (lang.equals(3l)) {
+				countryName = c.getNameKannnada();
+			} else if (lang.equals(4l)) {
+				countryName = c.getNameHindi();
+			} else if (lang.equals(5l)) {
+				countryName = c.getNameTamil();
+			}
+		}else if(countryId.equals(5l)) {
+			timezone = new Timezone(5L, "Brizal", "BELEM", 8.29, false, "Wedensday, 24 July 2019, 16:05:24 IST");
+			
+			
+			if (lang.equals(1L)) {
+				countryName = c.getNameEng();
+			} else if (lang.equals(2L)) {
+				countryName = c.getNameTelugu();
+			} else if (lang.equals(3l)) {
+				countryName = c.getNameKannnada();
+			} else if (lang.equals(4l)) {
+				countryName = c.getNameHindi();
+			} else if (lang.equals(5l)) {
+				countryName = c.getNameTamil();
+			}
+		}
+	
+		
 		model.addAttribute("countryName", countryName);
 		model.addAttribute("language", lang);
 		model.addAttribute("timezone", timezone);
 
 		return "timezone";
 	}
+		
+
 }
